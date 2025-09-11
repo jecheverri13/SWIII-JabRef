@@ -9,13 +9,9 @@ import java.util.*
 plugins {
     id("org.jabref.gradle.module")
     id("java-library")
-
     id("antlr")
-
     id("me.champeau.jmh") version "0.7.3"
-
     id("com.vanniktech.maven.publish") version "0.32.0"
-
     // id("dev.jbang") version "0.2.0"
     // Workaround for https://github.com/jbangdev/jbang-gradle-plugin/issues/7
     // Build state at https://jitpack.io/#koppor/jbang-gradle-plugin/fix-7-SNAPSHOT

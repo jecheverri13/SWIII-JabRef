@@ -47,6 +47,7 @@ import org.jabref.gui.mergeentries.FetchAndMergeEntry;
 import org.jabref.gui.preferences.GuiPreferences;
 import org.jabref.gui.preview.PreviewControls;
 import org.jabref.gui.preview.PreviewPanel;
+import org.jabref.gui.preview.CitationPreviewPanel;
 import org.jabref.gui.theme.ThemeManager;
 import org.jabref.gui.undo.CountingUndoManager;
 import org.jabref.gui.undo.RedoAction;
@@ -91,6 +92,7 @@ public class EntryEditor extends BorderPane implements PreviewControls, AdaptVis
     private final Supplier<LibraryTab> tabSupplier;
     private final ExternalFilesEntryLinker fileLinker;
     private final PreviewPanel previewPanel;
+    private final CitationPreviewPanel citationPreviewPanel;
     private final UndoAction undoAction;
     private final RedoAction redoAction;
 
@@ -138,13 +140,17 @@ public class EntryEditor extends BorderPane implements PreviewControls, AdaptVis
                 dialogService,
                 stateManager);
 
-        this.previewPanel = new PreviewPanel(
-                dialogService,
-                preferences.getKeyBindingRepository(),
-                preferences,
-                themeManager,
-                taskExecutor,
-                stateManager);
+    this.previewPanel = new PreviewPanel(
+        dialogService,
+        preferences.getKeyBindingRepository(),
+        preferences,
+        themeManager,
+        taskExecutor,
+        stateManager);
+
+    this.citationPreviewPanel = new CitationPreviewPanel();
+    this.citationPreviewPanel.setPrefHeight(120);
+    setBottom(citationPreviewPanel);
 
         setupKeyBindings();
 
@@ -428,6 +434,7 @@ public class EntryEditor extends BorderPane implements PreviewControls, AdaptVis
         }
 
         this.currentlyEditedEntry = currentlyEditedEntry;
+    citationPreviewPanel.setEntry(currentlyEditedEntry);
 
         // Subscribe to type changes for rebuilding the currently visible tab
         if (typeSubscription != null) {

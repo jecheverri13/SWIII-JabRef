@@ -63,6 +63,7 @@ open module org.jabref.jablib {
     exports org.jabref.logic.ai.ingestion.model;
     exports org.jabref.model.ai;
     exports org.jabref.logic.ai.processingstatus;
+    exports org.jabref.logic.citationformat;
     exports org.jabref.logic.ai.summarization;
     exports org.jabref.logic.layout.format;
     exports org.jabref.logic.auxparser;
